@@ -7,6 +7,8 @@ from PIL import Image, ImageDraw
 import base64
 from io import BytesIO
 import json
+import ftplib
+from config import *
 
 import matplotlib.pyplot as plt
 
@@ -22,12 +24,14 @@ current_time = time.time()
 current_time_st = datetime.now().strftime("%Y-%m-%dT%H:%M")
 end_time_st = (datetime.now() + timedelta(hours=11.95)).strftime("%Y-%m-%dT%H:%M")
 
-schedule = requests.get('https://airlabs.co/api/v9/schedules?dep_iata=PVD&api_key=22bcdfcd-9201-4613-ad42-233868976072').json()
+AIRLABS_API_KEY
+
+schedule = requests.get('https://airlabs.co/api/v9/schedules?dep_iata=PVD&api_key=' + AIRLABS_API_KEY).json()
 flights = schedule['response']
 
 coords = pd.read_csv('airport-codes_csv.csv',usecols=['iata_code', 'coordinates'])
 
-known_airlines = ['WN','B6','AA','DL','UA','MX','F9','G6']
+known_airlines = ['WN','B6','AA','DL','UA','MX','F9','G4']
 
 def generate_image(base_map, origin, dest):
     im = Image.open(base_map)
@@ -65,12 +69,10 @@ querystring = {"withLeg":"false","direction":"Departure","withCancelled":"false"
 
 headers = {
     'x-rapidapi-host': "aerodatabox.p.rapidapi.com",
-    'x-rapidapi-key': "0c6cf1ab06mshef31a230c02dc4cp1a1d8fjsn87793b2dc24a"
+    'x-rapidapi-key': RAPIDAPI_KEY
     }
 
 second_data = requests.request("GET", url, headers=headers, params=querystring).json()
-
-aircraft_model
 
 aircraft_model = ''
 
@@ -80,7 +82,7 @@ for i in second_data['departures']:
 
 next_flight['aircraft'] = aircraft_model
 
-next_flight['arr_iata']
+next_flight['short_time'] = next_flight['dep_time'][-5:]
 
 out = generate_image('cropmap.png',get_coords('PVD'),get_coords(next_flight['arr_iata']))
 buffered = BytesIO()
@@ -92,3 +94,9 @@ next_flight['map'] = img_str
 
 with open("next_flight.json", "w") as outfile:
     json.dump(next_flight,outfile)
+
+ftp_server = ftplib.FTP(HOST_NAME,FTP_USER,FTP_PASS)
+filename = "/public_html/resources/next_flight.json"
+
+with open("next_flight.json", "rb") as upfile:
+    ftp_server.storbinary(f"STOR {filename}", upfile)

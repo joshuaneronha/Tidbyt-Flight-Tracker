@@ -3,7 +3,7 @@ load("http.star", "http")
 load("encoding/base64.star", "base64")
 load("encoding/json.star", "json")
 
-JSON_URL = 'https://raw.githubusercontent.com/joshuaneronha/Tidbyt-Flight-Tracker/main/next_flight.json'
+JSON_URL = 'https://tid-resources.000webhostapp.com/resources/next_flight.json'
 LOGOS_URL = 'https://raw.githubusercontent.com/joshuaneronha/Tidbyt-Flight-Tracker/main/logos.json'
 
 def main():
@@ -24,10 +24,14 @@ def main():
             children = [
                 render.Box(
                   render.Column(
+                    expanded=True,
                     main_align = 'space_evenly',
                     cross_align = 'center',
                     children = [
                       render.Row(
+                        expanded=True,
+                        main_align = 'space_evenly',
+                        cross_align = 'center',
                         children = [
                           render.Image(src=logo),
                           render.Text(flight_number)
