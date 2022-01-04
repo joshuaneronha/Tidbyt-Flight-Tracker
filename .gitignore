@@ -3,3 +3,7 @@ config.py
 next_flight.json
 next_flight.json
 test.webp
+next_flight.json
+next_flight.json
+*.json
+test.webp
