@@ -16,6 +16,7 @@ def main():
     airline = rep.json()['airline_iata']
     arr_iata = rep.json()['arr_iata']
     short_time = rep.json()['short_time']
+    marquee = rep.json()['marquee']
     map = base64.decode(rep.json()['map'])
     logo = base64.decode(logo.json()[airline])
 
@@ -39,11 +40,15 @@ def main():
                       ),
 
                   render.Text(arr_iata),
-                  render.Text(short_time),
+                  render.Marquee(
+                      width=36,
+                      child=render.Text(marquee),
+                      offset_start=8,
+                  )
                   ],),width=36, height=32),
                 render.Box(
                   render.Image(src=map,width=28, height=32))
             ]
-        )
+        ), delay = 100
 
     )
