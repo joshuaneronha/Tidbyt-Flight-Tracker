@@ -60,7 +60,9 @@ flight_iata_f = flight_iata[0:2] + ' ' + flight_iata[2:]
 
 ### new source
 
-next_flight
+aircraft_model
+
+flights
 
 url = "https://aerodatabox.p.rapidapi.com/flights/airports/icao/KPVD/" + current_time_st + "/" + end_time_st
 
@@ -72,6 +74,10 @@ headers = {
     }
 
 second_data = requests.request("GET", url, headers=headers, params=querystring).json()
+
+flight_iata_f
+
+second_data['departures']
 
 aircraft_model = ''
 
