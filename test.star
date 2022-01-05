@@ -4,7 +4,7 @@ load("encoding/base64.star", "base64")
 load("encoding/json.star", "json")
 
 JSON_URL = 'https://tid-resources.000webhostapp.com/resources/next_flight.json'
-LOGOS_URL = 'https://raw.githubusercontent.com/joshuaneronha/Tidbyt-Flight-Tracker/main/logos.json'
+LOGOS_URL = 'http://tid-resources.000webhostapp.com/resources/logos.json'
 
 def main():
     rep = http.get(JSON_URL)

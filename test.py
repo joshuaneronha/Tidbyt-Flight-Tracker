@@ -58,12 +58,6 @@ airline, flight_iata, dest, dep_time = next_flight['airline_iata'], next_flight[
 
 flight_iata_f = flight_iata[0:2] + ' ' + flight_iata[2:]
 
-### new source
-
-aircraft_model
-
-flights
-
 url = "https://aerodatabox.p.rapidapi.com/flights/airports/icao/KPVD/" + current_time_st + "/" + end_time_st
 
 querystring = {"withLeg":"false","direction":"Departure","withCancelled":"false","withCodeshared":"false","withCargo":"false","withPrivate":"false","withLocation":"false"}
@@ -74,10 +68,6 @@ headers = {
     }
 
 second_data = requests.request("GET", url, headers=headers, params=querystring).json()
-
-flight_iata_f
-
-second_data['departures']
 
 aircraft_model = ''
 
@@ -91,11 +81,9 @@ for i in second_data['departures']:
         if 'Airbus' in aircraft_model:
             aircraft_model = aircraft_model.split('Airbus ')[1]
         if 'Embraer' in aircraft_model:
-            aircraft_model = 'E' + aircraft_model.split('Embraer ')
+            aircraft_model = 'E' + aircraft_model.split('Embraer ')[1]
 
 next_flight['aircraft'] = aircraft_model
-
-
 
 next_flight['short_time'] = next_flight['dep_time'][-5:]
 
@@ -105,12 +93,8 @@ out.save(buffered, format="PNG")
 buffered.seek(0)
 img_str = base64.b64encode(buffered.getvalue()).decode()
 
-next_flight
-
 next_flight['map'] = img_str
-next_flight['marquee'] = next_flight['short_time'] + '     ' + next_flight['aircraft'] + '     Gate' + next_flight['dep_gate']
-
-next_flight
+next_flight['marquee'] = next_flight['short_time'] + '     ' + next_flight['aircraft'] + '     Gate ' + next_flight['dep_gate']
 
 with open("next_flight.json", "w") as outfile:
     json.dump(next_flight,outfile)
