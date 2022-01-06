@@ -8,6 +8,7 @@ import json
 from config import *
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+import ftplib
 
 try:
     current_time = time.time()
@@ -61,6 +62,9 @@ except:
 
 with open("/home/pi/scripts/first_data.json", "w") as outfile:
     json.dump(first_data,outfile)
+
+ftp_server = ftplib.FTP(HOST_NAME,FTP_USER,FTP_PASS)
+filename = "/public_html/resources/first_data_ver.json"
 
 with open("/home/pi/scripts/second_data.json", "w") as outfile:
     json.dump(second_data,outfile)
