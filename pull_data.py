@@ -66,5 +66,8 @@ with open("/home/pi/scripts/first_data.json", "w") as outfile:
 ftp_server = ftplib.FTP(HOST_NAME,FTP_USER,FTP_PASS)
 filename = "/public_html/resources/first_data_ver.json"
 
+with open("/home/pi/scripts/first_data.json", "rb") as upfile:
+    ftp_server.storbinary(f"STOR {filename}", upfile)
+
 with open("/home/pi/scripts/second_data.json", "w") as outfile:
     json.dump(second_data,outfile)
