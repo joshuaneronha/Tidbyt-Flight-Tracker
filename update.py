@@ -11,6 +11,8 @@ import ftplib
 from config import *
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+import calendar
+from dateutil import parser
 
 try:
     with open("/home/pi/scripts/first_data.json", "rb") as infile:
@@ -54,11 +56,11 @@ try:
         return tuple([float(x) for x in extracted])
 
     for next_flight in flights:
-        if float(next_flight['dep_time_ts']) > current_time:
+        if calendar.timegm(parser.parse(next_flight['datetime']).timetuple()) > time.time():
             if (next_flight['airline_iata'] in known_airlines) & (next_flight['status'] != 'cancelled'):
                 break
 
-    airline, flight_iata, dest, dep_time = next_flight['airline_iata'], next_flight['flight_iata'], next_flight['arr_iata'], next_flight['dep_time']
+    airline, flight_iata, dest, dep_time = next_flight['airline_iata'], next_flight['flight_iata'], next_flight['arr_iata'], next_flight['datetime']
 
     flight_iata_f = flight_iata[0:2] + ' ' + flight_iata[2:]
 
