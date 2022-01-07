@@ -103,11 +103,11 @@ try:
     with open("/home/pi/scripts/next_flight.json", "rb") as upfile:
         ftp_server.storbinary(f"STOR {filename}", upfile)
 
-except:
+except Exception as e:
     url = 'https://www.pushsafer.com/api'
     post_fields = {
-    	"t" : 'Critical API Failure',
-    	"m" : 'Tidbyt Push',
+    	"t" : 'Tidbyt Push Failure',
+    	"m" : str(e),
     	"i" : 2,
         "c" : '#FF0000',
     	"d" : 'a',

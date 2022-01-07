@@ -3,7 +3,7 @@ load("http.star", "http")
 load("encoding/base64.star", "base64")
 load("encoding/json.star", "json")
 
-JSON_URL = 'https://tid-resources.000webhostapp.com/resources/next_flight.json'
+JSON_URL = 'http://www.planerange.me/resources/next_flight.json'
 LOGOS_URL = 'http://tid-resources.000webhostapp.com/resources/logos.json'
 
 def main():
