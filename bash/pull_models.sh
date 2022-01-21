@@ -1,0 +1,1 @@
+python /home/pi/scripts/pull_models.py  

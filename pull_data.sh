@@ -1,1 +1,0 @@
-python /home/pi/scripts/pull_data.py  
