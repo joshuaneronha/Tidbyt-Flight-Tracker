@@ -1,8 +1,9 @@
 <h1>Tidbyt Airport Departure Tracker</h1>
 <h3>Joshua Neronha, January 2021</h3>
 <br>
-<center>
+<div align = "center">
 <img src="render/generate.webp" height = 100></img>
+</div>
 </center>
 <h2>Purpose</h2>
 <p>Tracking planes is fun, particularly at your home airport! My home airport is PVD, and I'm always curious about its activity. So when I received my <a href="https://tidbyt.com">Tidbyt</a> (a small, programmable 64 x 32 LED display), I figured I'd built a visualization that would show the next departure from PVD. Read on for details!</p>
@@ -21,7 +22,7 @@
 <br>
 <p>This was the first project I did with my Tidbyt, and I am thrilled with the results! It's just fun to have this image effortlessly showing and updating around the house and is pretty much ideal for an aviation person like myself.</p>
 <p>As the first project I did, there was definitely a learning curve learning how to use Starlark and properly render content on the Tidbyt. Also, I had never really used Linux or done any hardware projects before, so this was pretty fun and a great new experience.</p>
-<p>I build on this project in my <a href="https://github.com/joshuaneronha/Aircraft-History-Tracker"">aircraf history tracker</a>, which shows the current location of all the planes I've been on in the past. While the project is distinct, there are a lot of shared resources and similarities, so this project was a great starting point for it!</p>
+<p>I build on this project in my <a href="https://github.com/joshuaneronha/Aircraft-History-Tracker"">aircraft history tracker</a>, which shows the current location of all the planes I've been on in the past. While the project is distinct, there are a lot of shared resources and similarities, so this project was a great starting point for it! Feel free to use my code as a starting point for your own, although signifigant modifications will need to be made for your airport (map, airline logos, etc.)</p>
 
 <h2>Acknowledgments and Attribution</h2>
-<p>I release this project and all associated code into the public domain, and it may be used unrestricted as long as attribution is provided to this author and this project.
+<p>A special thanks to AirLabs, which upgraded my API quota after learning about this project! The AeroDataBox API was also useful for obtaining aircraft models for different flights. Feel free to modify or reuse my project as you wish!</p>
